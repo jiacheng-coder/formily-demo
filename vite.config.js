@@ -1,29 +1,14 @@
 import { defineConfig } from 'vite'
-import path from 'path'
-import vitePluginImp from 'vite-plugin-imp'
 import react from '@vitejs/plugin-react-swc'
+// import viteAlias from 'vite-plugin-alias' [No need to import]
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    vitePluginImp({
-      libList: [
-        {
-          libName: 'antd',
-          style: name => `antd/es/${name}/style`,
-        },
-      ],
-    }),
-  ],
-  css: {
-    preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-      },
-    },
-  },
+  plugins: [react()],
   resolve: {
-    alias: [{ find: /^~/, replacement: '' }],
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)), // https://vueschool.io/articles/vuejs-tutorials/import-aliases-in-vite/
+    },
   },
 })
