@@ -1,7 +1,8 @@
 import React from 'react'
 import { createForm, onFieldValueChange } from '@formily/core'
 import { createSchemaField, FormConsumer } from '@formily/react'
-import { Form, FormItem, Input, Select } from '@formily/antd-v5'
+import { Form, FormItem, Input, Password, Select } from '@formily/antd-v5'
+import * as ICONS from '@ant-design/icons'
 
 const form = createForm({
   effects() {
@@ -20,15 +21,42 @@ const SchemaField = createSchemaField({
   components: {
     FormItem,
     Input,
+    Password,
     Select,
+  },
+  scope: {
+    icon(name) {
+      return React.createElement(ICONS[name])
+    },
   },
 })
 
 export default () => (
   <Form form={form}>
     <SchemaField>
-      <SchemaField.String name='username' title='姓名' x-component='Input' x-decorator='FormItem' />
-      <SchemaField.String name='password' title='密码' x-component='Input' x-decorator='FormItem' />
+      <SchemaField.String
+        name='username'
+        title='用户名'
+        required
+        x-decorator='FormItem'
+        x-component='Input'
+        x-validator={{
+          required: true,
+        }}
+        x-component-props={{
+          prefix: "{{icon('UserOutlined')}}",
+        }}
+      />
+      <SchemaField.String
+        name='password'
+        title='密码'
+        required
+        x-decorator='FormItem'
+        x-component='Password'
+        x-component-props={{
+          prefix: "{{icon('LockOutlined')}}",
+        }}
+      />
       <SchemaField.String
         name='select'
         title='控制者'

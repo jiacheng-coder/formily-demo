@@ -1,7 +1,7 @@
-import Test from '@/pages/Test.jsx'
-import AsynchronousDataValidation from './pages/AsynchronousDataValidation'
-import LinkageTest from './pages/linkageTest'
-import Login from '@/pages/Login'
+import Test from './pages/Test'
+import AsynchronousDataValidation from '@/pages/AsynchronousDataValidation'
+import LinkageEffectTest from '@/pages/LinkageEffectTest'
+import Login from './pages/Login'
 
 export default function App() {
   return (
@@ -12,8 +12,8 @@ export default function App() {
       <section style={{ padding: '0 50px' }}>
         {/* <Test /> */}
         {/* <Login /> */}
-        {/* <LinkageTest /> */}
-        <AsynchronousDataValidation />
+        <LinkageEffectTest />
+        {/* <AsynchronousDataValidation /> */}
       </section>
     </>
   )
